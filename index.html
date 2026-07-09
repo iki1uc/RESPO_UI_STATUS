@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>RESPO_UI_STATUS – 12ALL Status</title>
+<style>
+body { background:#000; color:#0f0; font-family:monospace; padding:20px; }
+pre { background:#111; padding:10px; border:1px solid #333; }
+button { background:#111; border:1px solid #0f0; color:#0f0; padding:6px 12px; margin:6px; }
+#out { margin-top:20px; white-space:pre; }
+</style>
+</head>
+<body>
+
+<h2>RESPO_UI_STATUS – Public Status Layer</h2>
+
+<button onclick="setStatus('idle')">idle</button>
+<button onclick="setStatus('active')">active</button>
+<button onclick="setStatus('UIme')">UIme</button>
+<button onclick="setStatus('root')">root</button>
+<button onclick="setStatus('12ALL')">12ALL</button>
+
+<pre id="out">
+RESPO_UI_STATUS bereit.
+</pre>
+
+<script>
+function setStatus(s) {
+  document.getElementById('out').textContent =
+    'Status: ' + s + '\nLayer: RESPO / Public / 12ALL\nUI-Lage aktiv.';
+}
+</script>
+
+</body>
+</html>
