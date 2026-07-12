@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>RESPO_UI_STATUS – 12ALL Status</title>
+
 <style>
 body { background:#000; color:#0f0; font-family:monospace; padding:20px; }
 pre { background:#111; padding:10px; border:1px solid #333; }
@@ -10,6 +11,7 @@ button { background:#111; border:1px solid #0f0; color:#0f0; padding:6px 12px; m
 #out { margin-top:20px; white-space:pre; }
 </style>
 </head>
+
 <body>
 
 <h2>RESPO_UI_STATUS – Public Status Layer</h2>
@@ -24,10 +26,33 @@ button { background:#111; border:1px solid #0f0; color:#0f0; padding:6px 12px; m
 RESPO_UI_STATUS bereit.
 </pre>
 
-<script>
+<script type="module">
+const RESPO_UI = {
+  layer: "RESPO / Public / 12ALL",
+  orbit: "IS → OUT → OI → IO → IN",
+  stamp() { return Date.now(); },
+  norm(s) {
+    if (s === "idle") return "OK";
+    if (s === "active") return "FLOW";
+    if (s === "UIme") return "ECHO";
+    if (s === "root") return "ROOT";
+    if (s === "12ALL") return "ALL";
+    return "VOID";
+  }
+};
+
 function setStatus(s) {
-  document.getElementById('out').textContent =
-    'Status: ' + s + '\nLayer: RESPO / Public / 12ALL\nUI-Lage aktiv.';
+  const out = document.getElementById('out');
+
+  const norm = RESPO_UI.norm(s);
+
+  out.textContent =
+    `Status: ${s}\n` +
+    `Norm: ${norm}\n` +
+    `Layer: ${RESPO_UI.layer}\n` +
+    `Orbit: ${RESPO_UI.orbit}\n` +
+    `STAMP: ${RESPO_UI.stamp()}\n` +
+    `UI-Lage aktiv.`;
 }
 </script>
 
